@@ -15,12 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        />
-      </head>
+      <head />
       <body className="bg-war-bg text-war-text font-mono antialiased overflow-hidden">
         {children}
       </body>
