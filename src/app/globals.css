@@ -1,9 +1,9 @@
+/* @import must come first */
+@import "leaflet/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Leaflet — bundled via npm */
-@import "leaflet/dist/leaflet.css";
 
 :root {
   --war-bg: #080c18;
