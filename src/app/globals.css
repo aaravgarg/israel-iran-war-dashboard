@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --war-bg: #080c18;
+  --war-panel: #0f1624;
+  --war-border: #1a2744;
+  --war-blue: #3b82f6;
+  --war-red: #ef4444;
+  --war-orange: #f97316;
+  --war-green: #22c55e;
+  --war-purple: #a855f7;
+  --war-yellow: #eab308;
+  --war-muted: #4b5563;
+  --war-text: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ─── Scrollbar styling ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--war-panel);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--war-border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--war-muted);
+}
+
+/* ─── Leaflet overrides ──────────────────────────────────────────────────────── */
+.leaflet-container {
+  background: #050a14 !important;
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--war-panel) !important;
+  border: 1px solid var(--war-border) !important;
+  color: var(--war-text) !important;
+  border-radius: 2px !important;
+  font-family: "Courier New", Courier, monospace !important;
+  font-size: 0.75rem !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--war-panel) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--war-muted) !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: var(--war-text) !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--war-border) !important;
+  border-radius: 2px !important;
+}
+
+.leaflet-control-zoom a {
+  background: var(--war-panel) !important;
+  color: var(--war-text) !important;
+  border-color: var(--war-border) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--war-border) !important;
+}
+
+.leaflet-bar {
+  box-shadow: none !important;
+}
+
+/* ─── Custom components ──────────────────────────────────────────────────────── */
+.incident-popup a {
+  color: var(--war-blue);
+  text-decoration: none;
+}
+
+.incident-popup a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+  animation: scan-line 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Range input (time scrubber) ────────────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--war-border);
+  height: 3px;
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--war-blue);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--war-blue);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--war-blue);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px var(--war-blue);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--war-border);
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* ─── News card flash ─────────────────────────────────────────────────────────── */
+@keyframes flash-in {
+  0% {
+    border-left-color: var(--war-green);
+    background-color: rgba(34, 197, 94, 0.08);
+  }
+  100% {
+    border-left-color: var(--war-border);
+    background-color: transparent;
+  }
+}
+
+.news-new {
+  animation: flash-in 3s ease-out forwards;
+}
